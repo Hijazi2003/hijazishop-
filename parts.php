@@ -1,21 +1,31 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = new mysqli("mohmmadshop-server.mysql.database.azure.com", "tzvjbqqnra", "5X06B30U27SF61Y1$", "mohmmadshop-database");
+ $servername = "shopdb1.mysql.database.azure.com";
+    $username = "rwn";
+    $password = "root123456789.";
+    $dbname = "shopdb1";
+   
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+ // Check connection
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        die("Connection failed: ". $conn->connect_error);
     }
-    $pname = $_POST['pname'];
-    $price = $_POST['price'];
-    $color = $_POST['color'];
-    $sql = "INSERT INTO products (pname, price, color) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $pname, $price, $color);
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-    $stmt->close();
-    $conn->close();
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+        // collect value of input field
+       
+        $productName = $_REQUEST['productName'];
+        $ProductColor = $_REQUEST['productcolor'];
+        $ProductCatID = $_REQUEST['catID'];
+       
+       
+        $sqlquery = "INSERT INTO products (Pname, color, catID) VALUES ('$productName','$ProductColor' , '$ProductCatID' )";
+       
+        if ($conn->query($sqlquery) == TRUE) {
+            echo "record inserted successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }  
+ 
+   }
 ?>
