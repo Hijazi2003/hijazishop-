@@ -62,5 +62,5 @@ jobs:
         with:
           app-name: 'hijazishop'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D759304CAC834AA5946A021001F04A01 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8C31899A63464A8EAE94FA22476024D8 }}
           package: .
